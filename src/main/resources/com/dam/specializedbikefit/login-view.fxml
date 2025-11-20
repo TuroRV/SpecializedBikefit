@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.12" fx:controller="com.dam.specializedbikefit.LoginController">
+<VBox alignment="CENTER" spacing="12.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.dam.specializedbikefit.LoginController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
 
-    <Label fx:id="welcomeText" />
-   <Label text="Specialized Bikefit" />
-   <TextField promptText="Introduce email" />
-   <PasswordField promptText="Introduce contraseña" />
+    <Label text="Specialized Bikefit" />
+
+    <VBox alignment="CENTER" spacing="2.0">
+        <Label text="Email" />
+        <TextField promptText="Introduce email" prefWidth="260.0" maxWidth="260.0" fx:id="emailTextField"/>
+    </VBox>
+
+    <VBox alignment="CENTER" spacing="2.0">
+        <Label fx:id="loginLabelTitle" text="Contraseña" />
+        <PasswordField promptText="Introduce contraseña" prefWidth="260.0" maxWidth="260.0" fx:id="passwordTextField"/>
+    </VBox>
+
     <Button onAction="#onHelloButtonClick" text="Login" />
 </VBox>
