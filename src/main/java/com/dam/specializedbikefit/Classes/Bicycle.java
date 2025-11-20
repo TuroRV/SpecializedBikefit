@@ -12,6 +12,7 @@ public class Bicycle {
     private float bike_seattubelength;
     private float bike_toptubelength;
 
+
     public Bicycle() {}
 
     public Bicycle(int bike_id, String bike_brand, String bike_model, String bike_size, int bike_year, float bike_reach, float bike_stack, float bike_seattubelength, float bike_toptubelength) {
