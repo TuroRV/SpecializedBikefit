@@ -1,4 +1,4 @@
-package com.dam.specializedbikefit;
+package com.dam.specializedbikefit.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

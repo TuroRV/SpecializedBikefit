@@ -3,7 +3,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.dam.specializedbikefit.MainController"
+            fx:controller="com.dam.specializedbikefit.Controllers.MainController"
             prefHeight="400.0" prefWidth="600.0">
 
 </AnchorPane>
