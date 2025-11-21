@@ -1,7 +1,15 @@
 package com.dam.specializedbikefit.Classes;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+import java.util.Set;
+
+@Entity
 public class Bicycle {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int bike_id;
     private String bike_brand;
     private String bike_model;
@@ -11,12 +19,15 @@ public class Bicycle {
     private float bike_stack;
     private float bike_seattubelength;
     private float bike_toptubelength;
-
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "users_bicycle",
+                joinColumns = @JoinColumn(name = "bike_id"),
+                inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<User> users;
 
     public Bicycle() {}
 
-    public Bicycle(int bike_id, String bike_brand, String bike_model, String bike_size, int bike_year, float bike_reach, float bike_stack, float bike_seattubelength, float bike_toptubelength) {
-        this.bike_id = bike_id;
+    public Bicycle(String bike_brand, String bike_model, String bike_size, int bike_year, float bike_reach, float bike_stack, float bike_seattubelength, float bike_toptubelength) {
         this.bike_brand = bike_brand;
         this.bike_model = bike_model;
         this.bike_size = bike_size;
@@ -29,10 +40,6 @@ public class Bicycle {
 
     public int getBike_id() {
         return bike_id;
-    }
-
-    public void setBike_id(int bike_id) {
-        this.bike_id = bike_id;
     }
 
     public String getBike_brand() {

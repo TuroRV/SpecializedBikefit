@@ -1,7 +1,15 @@
 package com.dam.specializedbikefit.Classes;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+import java.util.Set;
+
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int user_id;
     private String user_name;
     private String user_surname;
@@ -11,11 +19,12 @@ public class User {
     private float user_torsolength;
     private float user_armlength;
     private float user_inseamlength;
+    @ManyToMany(mappedBy = "users")
+    private Set<Bicycle> bicycles;
 
     public User(){}
 
-    public User(int user_id, String user_name, String user_surname, String user_email, String user_password, float user_height, float user_torsolength, float user_armlength, float user_inseamlength) {
-        this.user_id = user_id;
+    public User (String user_name, String user_surname, String user_email, String user_password, float user_height, float user_torsolength, float user_armlength, float user_inseamlength) {
         this.user_name = user_name;
         this.user_surname = user_surname;
         this.user_email = user_email;
@@ -28,10 +37,6 @@ public class User {
 
     public int getUser_id() {
         return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
     }
 
     public String getUser_name() {

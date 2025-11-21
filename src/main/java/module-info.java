@@ -1,6 +1,7 @@
 module com.dam.specializedbikefit {
     requires javafx.controls;
     requires javafx.fxml;
+    requires jakarta.persistence;
 
 
     opens com.dam.specializedbikefit to javafx.fxml;

@@ -15,7 +15,10 @@ public class LoginController {
     public TextField emailTextField;
 
     @FXML
-    protected void onHelloButtonClick() {
-        loginLabelTitle.setText("Welcome to JavaFX Application!");
+    protected void login() {
+        String user_email = emailTextField.getText();
+        String password = passwordTextField.getText();
+
+
     }
 }
