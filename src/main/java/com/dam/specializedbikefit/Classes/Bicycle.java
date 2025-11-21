@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Table(name = "bicycles")
 public class Bicycle {
 
     @Id
