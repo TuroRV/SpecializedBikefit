@@ -2,6 +2,7 @@ module com.dam.specializedbikefit {
     requires javafx.controls;
     requires javafx.fxml;
     requires jakarta.persistence;
+    requires org.hibernate.orm.core;
 
 
     opens com.dam.specializedbikefit to javafx.fxml;

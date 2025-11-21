@@ -1,0 +1,30 @@
+package com.dam.specializedbikefit.DBConnection;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.hibernate.cfg.Configuration;
+
+public class Connection {
+
+    private static SessionFactory sessionFactory;
+
+    public static void initializeConnection(){
+        Configuration configuration = new Configuration().configure();
+        StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
+        sessionFactory = configuration.buildSessionFactory(builder.build());
+    }
+
+    public static SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public static void setSessionFactory(SessionFactory sessionFactory) {
+        Connection.sessionFactory = sessionFactory;
+    }
+
+    public static void shutdown(){
+        if (sessionFactory != null) {
+            sessionFactory.close();
+        }
+    }
+}
