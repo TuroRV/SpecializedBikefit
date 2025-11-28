@@ -21,5 +21,5 @@
         <PasswordField promptText="Introduce contraseña" prefWidth="260.0" maxWidth="260.0" fx:id="passwordTextField"/>
     </VBox>
 
-    <Button onAction="#login" text="Login" />
+    <Button fx:id="loginButton" onAction="#login" text="Login" />
 </VBox>

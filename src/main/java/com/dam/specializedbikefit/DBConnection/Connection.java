@@ -9,7 +9,11 @@ public class Connection {
     private static SessionFactory sessionFactory;
 
     public static void initializeConnection(){
-        Configuration configuration = new Configuration().configure();
+        Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+
+        configuration.addAnnotatedClass(com.dam.specializedbikefit.Classes.User.class);
+        configuration.addAnnotatedClass(com.dam.specializedbikefit.Classes.Bicycle.class);
+
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         sessionFactory = configuration.buildSessionFactory(builder.build());
     }

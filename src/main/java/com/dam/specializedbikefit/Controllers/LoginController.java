@@ -1,16 +1,21 @@
 package com.dam.specializedbikefit.Controllers;
 
 import com.dam.specializedbikefit.Classes.User;
+import com.dam.specializedbikefit.DAOs.UserDAO;
+import com.dam.specializedbikefit.DAOs.UserDAOImpl;
 import com.dam.specializedbikefit.DBConnection.Connection;
+import com.dam.specializedbikefit.Navigation.Alerts;
+import com.dam.specializedbikefit.Navigation.Navigator;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class LoginController {
+
+
+    UserDAO userDAO = new UserDAOImpl();
 
     @FXML
     private Label loginLabelTitle;
@@ -18,29 +23,19 @@ public class LoginController {
     public PasswordField passwordTextField;
     @FXML
     public TextField emailTextField;
+    @FXML
+    public Button loginButton;
 
     @FXML
     protected void login() {
         String user_email = emailTextField.getText();
         String password = passwordTextField.getText();
 
-        Session session = Connection.getSessionFactory().openSession();
-        Transaction transaction = session.beginTransaction();
-
-        Query<User> query = session.createQuery("FROM User WHERE user_email = :email AND user_password = :password",User.class);
-        query.setParameter("email", user_email);
-        query.setParameter("password", password);
-
-
-        //Esto devuelve un único valor de usuario. Si no es nulo, significa que las credenciales con correctas.
-        User user = query.uniqueResult();
-
-        if (user != null) {
-            //Falta
+        if(userDAO.validateCredentials(user_email, password)) {
+            Navigator.changeStage(loginButton,"home-view.fxml","Home");
         }
-
-
-
-
+        else  {
+            Alerts.showStandardAlert(Alert.AlertType.ERROR,"Error de Login","Credenciales no válidas","El email o la contraseña no son correctos");
+        }
     }
 }

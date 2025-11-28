@@ -2,7 +2,6 @@ package com.dam.specializedbikefit.Classes;
 
 import jakarta.persistence.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Entity
