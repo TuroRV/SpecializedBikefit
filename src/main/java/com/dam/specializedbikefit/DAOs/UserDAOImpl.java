@@ -44,4 +44,25 @@ public class UserDAOImpl implements UserDAO {
     public void updateProfile() {
 
     }
+
+    @Override
+    public User getUserByEmail(String email) {
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+
+        String hql = "FROM " + User.class.getName() + " u " +
+                "WHERE u.user_email = :email";
+
+        Query<User> query = session.createQuery(hql,User.class);
+        query.setParameter("email", email);
+
+        User user = query.uniqueResult();
+        transaction.commit();
+
+        if (user != null) {
+            return user;
+        }
+        return null;
+    }
 }

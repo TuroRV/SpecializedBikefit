@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<BorderPane prefHeight="400.0" prefWidth="600.0"
+            xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.dam.specializedbikefit.Controllers.HomeController">
+
+    <top>
+        <HBox spacing="20" style="-fx-padding: 10; -fx-background-color: #ececec;">
+
+            <Label text="Specialized Bikefit" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+
+            <Pane HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="userInfoLabel" text="Usuario: John Doe" style="-fx-font-size: 14;" />
+        </HBox>
+    </top>
 
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dam.specializedbikefit.Controllers.MainController">
-   <children>
-      <Label layoutX="286.0" layoutY="192.0" text="Jelou" />
-   </children>
-</AnchorPane>
+    <center>
+        <SplitPane dividerPositions="0.5">
+
+            <AnchorPane>
+                <children>
+                    <Label text="Bikefits" style="-fx-font-size: 16; -fx-font-weight: bold;" layoutX="10" layoutY="10"/>
+                </children>
+            </AnchorPane>
+
+            <AnchorPane>
+                <children>
+                    <Label text="Garaje" style="-fx-font-size: 16; -fx-font-weight: bold;" layoutX="10" layoutY="10"/>
+                </children>
+            </AnchorPane>
+        </SplitPane>
+    </center>
+</BorderPane>

@@ -6,6 +6,7 @@ import com.dam.specializedbikefit.DAOs.UserDAOImpl;
 import com.dam.specializedbikefit.DBConnection.Connection;
 import com.dam.specializedbikefit.Navigation.Alerts;
 import com.dam.specializedbikefit.Navigation.Navigator;
+import com.dam.specializedbikefit.Singleton.UserSession;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.hibernate.Session;
@@ -32,7 +33,10 @@ public class LoginController {
         String password = passwordTextField.getText();
 
         if(userDAO.validateCredentials(user_email, password)) {
+
             Navigator.changeStage(loginButton,"home-view.fxml","Home");
+            User user = userDAO.getUserByEmail(user_email);
+            UserSession.setUser(user);
         }
         else  {
             Alerts.showStandardAlert(Alert.AlertType.ERROR,"Error de Login","Credenciales no válidas","El email o la contraseña no son correctos");
