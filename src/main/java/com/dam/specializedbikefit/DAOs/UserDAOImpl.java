@@ -22,7 +22,7 @@ public class UserDAOImpl implements UserDAO {
         query.setParameter("password", password);
 
         User user = query.uniqueResult();
-        transaction.commit();
+        session.close();
 
         if (user != null) {
             return true;
@@ -58,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
         query.setParameter("email", email);
 
         User user = query.uniqueResult();
-        transaction.commit();
+        session.close();
 
         if (user != null) {
             return user;

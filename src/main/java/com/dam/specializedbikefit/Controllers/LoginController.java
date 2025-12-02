@@ -34,9 +34,10 @@ public class LoginController {
 
         if(userDAO.validateCredentials(user_email, password)) {
 
-            Navigator.changeStage(loginButton,"home-view.fxml","Home");
             User user = userDAO.getUserByEmail(user_email);
             UserSession.setUser(user);
+            Navigator.changeStage(loginButton,"home-view.fxml","Home");
+
         }
         else  {
             Alerts.showStandardAlert(Alert.AlertType.ERROR,"Error de Login","Credenciales no válidas","El email o la contraseña no son correctos");
