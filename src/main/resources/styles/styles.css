@@ -84,3 +84,42 @@
 .scroll-pane > .viewport {
     -fx-background-color: transparent;
 }
+
+.btn-light {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-background-radius: 5;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 5, 0, 0, 0);
+}
+
+.btn-light:hover {
+    -fx-background-color: #e0e0e0;
+}
+
+.user-label-header {
+    -fx-text-fill: #cccccc;
+    -fx-font-size: 12px;
+}
+
+.login-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d32f2f;
+    -fx-effect: dropshadow(one-pass-box, rgba(0,0,0,0.2), 0, 3, 0, 2);
+    -fx-padding: 0 0 10 0;
+}
+
+.text-field, .password-field {
+    -fx-background-radius: 5;
+    -fx-padding: 10;
+    -fx-font-size: 13px;
+    -fx-background-color: #f9f9f9;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 5;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #d32f2f;
+    -fx-background-color: #ffffff;
+}
