@@ -103,6 +103,14 @@ public class User {
         this.user_inseamlength = user_inseamlength;
     }
 
+    public Set<Bicycle> getBicycles() {
+        return bicycles;
+    }
+
+    public void setBicycles(Set<Bicycle> bicycles) {
+        this.bicycles = bicycles;
+    }
+
     @Override
     public String toString() {
         return "User{" +

@@ -55,6 +55,6 @@ public class BicycleDAOImpl implements BicycleDAO {
         } finally {
             session.close();
         }
-        return bicycle;
+        return resultBicycle;
     }
 }
