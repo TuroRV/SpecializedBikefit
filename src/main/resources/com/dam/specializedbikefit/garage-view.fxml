@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dam.specializedbikefit.Controllers.GarageController">
+    <center>
+    <HBox>
+        <VBox>
+            <TableView fx:id="garageTable">
+                <columns>
+                    <TableColumn fx:id="brandColumn" />
+                    <TableColumn fx:id="modelColumn" />
+                    <TableColumn fx:id="sizeColumn" />
+                    <TableColumn fx:id="yearColumn" />
+                    <TableColumn fx:id="reachColumn" />
+                    <TableColumn fx:id="seatTubeColumn" />
+                    <TableColumn fx:id="topTubeColumn" />
+                </columns>
+            </TableView>
+        </VBox>
+        <VBox>
+            <Label/>
+            <TextField/>
+
+        </VBox>
+    </HBox>
+    </center>
+</BorderPane>

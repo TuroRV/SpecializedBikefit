@@ -20,6 +20,7 @@ public class Bicycle {
     private float bike_stack;
     private float bike_seattubelength;
     private float bike_toptubelength;
+    private boolean bike_isEbike;
     @ManyToMany(cascade = CascadeType.MERGE)
     @JoinTable(name = "users_bicycle",
                 joinColumns = @JoinColumn(name = "bike_id"),
@@ -28,7 +29,7 @@ public class Bicycle {
 
     public Bicycle() {}
 
-    public Bicycle(String bike_brand, String bike_model, String bike_size, int bike_year, float bike_reach, float bike_stack, float bike_seattubelength, float bike_toptubelength) {
+    public Bicycle(String bike_brand, String bike_model, String bike_size, int bike_year, float bike_reach, float bike_stack, float bike_seattubelength, float bike_toptubelength, boolean bike_isEbike) {
         this.bike_brand = bike_brand;
         this.bike_model = bike_model;
         this.bike_size = bike_size;
@@ -37,6 +38,7 @@ public class Bicycle {
         this.bike_stack = bike_stack;
         this.bike_seattubelength = bike_seattubelength;
         this.bike_toptubelength = bike_toptubelength;
+        this.bike_isEbike = bike_isEbike;
     }
 
     public int getBike_id() {
@@ -105,6 +107,22 @@ public class Bicycle {
 
     public void setBike_toptubelength(float bike_toptubelength) {
         this.bike_toptubelength = bike_toptubelength;
+    }
+
+    public boolean isBike_isEbike() {
+        return bike_isEbike;
+    }
+
+    public void setBike_isEbike(boolean bike_isEbike) {
+        this.bike_isEbike = bike_isEbike;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
     @Override
