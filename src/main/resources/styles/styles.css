@@ -54,3 +54,33 @@
 .btn-secondary:hover {
     -fx-background-color: #555555;
 }
+
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #555555;
+}
+
+.section-separator {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #d32f2f;
+    -fx-padding: 10 0 5 0;
+}
+
+.btn-primary {
+    -fx-background-color: #d32f2f;
+    -fx-text-fill: white;
+}
+.btn-primary:hover {
+    -fx-background-color: #b71c1c;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}

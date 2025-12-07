@@ -3,6 +3,8 @@ package com.dam.specializedbikefit.Controllers;
 import com.dam.specializedbikefit.DAOs.UserDAO;
 import com.dam.specializedbikefit.DAOs.UserDAOImpl;
 import com.dam.specializedbikefit.Navigation.Alerts;
+import com.dam.specializedbikefit.Navigation.AppView;
+import com.dam.specializedbikefit.Navigation.ViewSwitcher;
 import com.dam.specializedbikefit.Singleton.UserSession;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
@@ -72,5 +74,9 @@ public class ProfileController {
                 Alerts.showStandardAlert(Alert.AlertType.ERROR,"Error","Error de conexión","Ha ocurrido un error conectando a base de datos");
             }
 
+    }
+
+    public void returnHome(ActionEvent actionEvent) {
+        ViewSwitcher.showView(AppView.MENU);
     }
 }
