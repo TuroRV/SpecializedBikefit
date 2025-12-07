@@ -1,39 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<BorderPane prefHeight="400.0" prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/17.0.12"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.dam.specializedbikefit.Controllers.HomeController">
+<BorderPane prefHeight="500.0" prefWidth="800.0" stylesheets="@../../../styles/styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dam.specializedbikefit.Controllers.HomeController">
 
     <top>
-        <HBox spacing="20" style="-fx-padding: 10; -fx-background-color: #ececec;">
+        <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-container">
+            <Label styleClass="app-title" text="Specialized Bikefit" />
 
-            <Label text="Specialized Bikefit" style="-fx-font-size: 18; -fx-font-weight: bold;" />
-
-            <Pane HBox.hgrow="ALWAYS"/>
-
-            <Label fx:id="userInfoLabel" text="Usuario: John Doe" style="-fx-font-size: 14;" />
+            <Pane HBox.hgrow="ALWAYS" />
+         <VBox alignment="CENTER" prefHeight="0.0" prefWidth="100.0">
+            <children>
+               <Button fx:id="profileButton" styleClass="btn, btn-secondary" mnemonicParsing="false" text="Mi Perfil" textAlignment="CENTER">
+                  <opaqueInsets>
+                     <Insets />
+                  </opaqueInsets>
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin>
+               </Button>
+      
+                  <Label fx:id="userInfoLabel" styleClass="user-label" text="Usuario: usuario" />
+            </children>
+         </VBox>
         </HBox>
     </top>
 
-
     <center>
-        <SplitPane dividerPositions="0.5">
+        <HBox alignment="CENTER" spacing="30" styleClass="main-content">
 
-            <AnchorPane>
-                <children>
-                    <Label text="Bikefits" style="-fx-font-size: 16; -fx-font-weight: bold;" layoutX="10" layoutY="10"/>
-                </children>
-            </AnchorPane>
+            <VBox alignment="CENTER" spacing="15" styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="card-title" text="Mis Settings" />
+                <Label styleClass="card-subtitle" text="Configura tu perfil" />
+                <Button styleClass="btn, btn-secondary" text="Entrar" />
+            </VBox>
 
-            <AnchorPane>
-                <children>
-                    <Label text="Garaje" style="-fx-font-size: 16; -fx-font-weight: bold;" layoutX="10" layoutY="10"/>
-                </children>
-            </AnchorPane>
-        </SplitPane>
+            <VBox alignment="CENTER" spacing="15" styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="card-title" text="Crear Bikefit" />
+                <Label styleClass="card-subtitle" text="Nuevo análisis" />
+                <Button styleClass="btn, btn-secondary" text="Comenzar" />
+            </VBox>
+
+            <VBox alignment="CENTER" spacing="15" styleClass="card" HBox.hgrow="ALWAYS">
+                <Label styleClass="card-title" text="Mi Garaje" />
+                <Label styleClass="card-subtitle" text="Gestiona tus bicis" />
+                <Button styleClass="btn, btn-secondary" text="Ver Garaje" />
+            </VBox>
+
+        </HBox>
     </center>
+
 </BorderPane>
