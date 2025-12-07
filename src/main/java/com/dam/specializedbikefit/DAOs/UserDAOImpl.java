@@ -4,6 +4,7 @@ import com.dam.specializedbikefit.Classes.Bicycle;
 import com.dam.specializedbikefit.Classes.User;
 import com.dam.specializedbikefit.DBConnection.Connection;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 public class UserDAOImpl implements UserDAO {
@@ -39,8 +40,24 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void updateProfile() {
+    public void updateProfile(User user) {
 
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.merge(user);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+        }
+        finally {
+            session.close();
+        }
     }
 
     @Override

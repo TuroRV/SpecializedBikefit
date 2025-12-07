@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
-<BorderPane>
-<Text>Usuario</Text>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dam.specializedbikefit.Controllers.ProfileController">
+<center>
+    <VBox>
+    <TextField fx:id="nameTextField" promptText="Nombre" />
+    <TextField fx:id="surnameTextField" promptText="Apellidos" />
+    <Label fx:id="emailLabel" />
+    <Label fx:id="passwordLabel" />
+    <TextField fx:id="heightField" promptText="Altura" />
+    <TextField fx:id="torsoLengthField" promptText="Medida de torso" />
+    <TextField fx:id="armLengthField" promptText="Medida del brazo" />
+    <TextField fx:id="inseamLengthField" promptText="Medida pie / Entrepierna" />
+         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" text="Modificar" textAlignment="CENTER" onAction="#modifyProfile"/>
+</VBox>
+</center>
 </BorderPane>

@@ -8,7 +8,7 @@ public interface UserDAO {
     boolean validateCredentials(String email, String password);
     void addBicycle(Bicycle bicycle);
     void deleteBicycle(Bicycle bicycle);
-    void updateProfile();
+    void updateProfile(User user);
     User getUserByEmail(String email);
 
 
