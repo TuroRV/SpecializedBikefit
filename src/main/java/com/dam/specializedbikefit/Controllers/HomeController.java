@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 
 import java.util.Optional;
@@ -19,6 +20,7 @@ public class HomeController {
     public Label userInfoLabel;
     public BorderPane contentPane;
     public Button profileButton;
+    public Label appTitle;
 
     public void initialize() {
 
@@ -46,5 +48,9 @@ public class HomeController {
             UserSession.setUser(null);
             Navigator.changeStage(profileButton, "login-view.fxml", "Login");
         }
+    }
+
+    public void goToMenu(MouseEvent mouseEvent) {
+        ViewSwitcher.showView(AppView.MENU);
     }
 }

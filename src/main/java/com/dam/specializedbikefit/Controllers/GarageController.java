@@ -1,9 +1,14 @@
 package com.dam.specializedbikefit.Controllers;
 
+import com.dam.specializedbikefit.Classes.Bicycle;
+import com.dam.specializedbikefit.DAOs.BicycleDAO;
+import com.dam.specializedbikefit.DAOs.BicycleDAOImpl;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
 
 public class GarageController {
+
+    BicycleDAO bicycleDAO = new BicycleDAOImpl();
 
     public TableView garageTable;
     public TableColumn brandColumn;
@@ -48,5 +53,14 @@ public class GarageController {
 
 
     public void addBicycle(ActionEvent actionEvent) {
+
+        RadioButton selectedRadio = (RadioButton) sizeGroup.getSelectedToggle();
+        String size = selectedRadio.getText();
+
+        Bicycle bicycle = new Bicycle(brandField.getText(), modelField.getText(), size, Integer.parseInt(yearField.getText()),(float)reachSlider.getValue(),(float)stackSlider.getValue(),(float)seatTubeSlider.getValue(),(float)topTubeSlider.getValue(),isEbikeCheck.isSelected());
+
+
+
+
     }
 }

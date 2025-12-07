@@ -8,8 +8,12 @@
     -fx-font-size: 20px;
     -fx-font-weight: bold;
     -fx-text-fill: white;
+    -fx-cursor: hand;
 }
 
+.app-title:hover {
+    -fx-text-fill: #e0e0e0;
+}
 .user-label {
     -fx-font-size: 14px;
     -fx-text-fill: #cccccc;
@@ -122,4 +126,14 @@
 .text-field:focused, .password-field:focused {
     -fx-border-color: #d32f2f;
     -fx-background-color: #ffffff;
+}
+
+.radio-button, .check-box {
+    -fx-text-fill: #333333;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+}
+
+.radio-button:hover, .check-box:hover {
+    -fx-text-fill: #000000;
 }

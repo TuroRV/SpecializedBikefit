@@ -17,7 +17,7 @@
     <top>
         <HBox alignment="CENTER_LEFT" spacing="20" styleClass="header-container">
 
-            <Label styleClass="app-title" text="Specialized Bikefit" />
+            <Label styleClass="app-title" text="Specialized Bikefit" fx:id="appTitle" onMouseClicked="#goToMenu"/>
 
             <Pane HBox.hgrow="ALWAYS" />
 
