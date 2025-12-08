@@ -4,6 +4,7 @@ import com.dam.specializedbikefit.Classes.Bicycle;
 import com.dam.specializedbikefit.Classes.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserDAO {
 
@@ -12,7 +13,7 @@ public interface UserDAO {
     void deleteBicycle(Bicycle bicycle);
     void updateProfile(User user);
     User getUserByEmail(String email);
-    List<Bicycle> getUserBikes(User user);
+    Set<Bicycle> getUserBicycles(User user);
 
 
 }

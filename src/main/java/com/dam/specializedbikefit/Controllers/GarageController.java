@@ -105,7 +105,7 @@ public class GarageController {
     }
 
     private void loadUserBikes() {
-        Set<Bicycle> bicyclesSet = UserSession.getUser().getBicycles();
+        Set<Bicycle> bicyclesSet = userDAO.getUserBicycles(UserSession.getUser());
         userBicycles = FXCollections.observableArrayList(bicyclesSet);
         garageTable.setItems(userBicycles);
     }

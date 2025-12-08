@@ -7,7 +7,7 @@ module com.dam.specializedbikefit {
 
     opens com.dam.specializedbikefit to javafx.fxml;
     opens com.dam.specializedbikefit.Controllers to javafx.fxml;
-    opens com.dam.specializedbikefit.Classes to org.hibernate.orm.core,jakarta.persistence;
+    opens com.dam.specializedbikefit.Classes to org.hibernate.orm.core,jakarta.persistence,javafx.base;
 
     exports com.dam.specializedbikefit;
     exports com.dam.specializedbikefit.Controllers;

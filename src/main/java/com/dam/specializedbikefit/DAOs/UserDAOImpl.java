@@ -3,11 +3,12 @@ package com.dam.specializedbikefit.DAOs;
 import com.dam.specializedbikefit.Classes.Bicycle;
 import com.dam.specializedbikefit.Classes.User;
 import com.dam.specializedbikefit.DBConnection.Connection;
+import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
-import java.util.List;
+import java.util.Set;
 
 public class UserDAOImpl implements UserDAO {
     @Override
@@ -98,7 +99,24 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<Bicycle> getUserBikes(User user) {
-        return List.of();
+    public Set<Bicycle> getUserBicycles(User user) {
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Set<Bicycle> userbikes = null;
+
+        try {
+            User userConectado = session.merge(user);
+
+            userbikes = userConectado.getBicycles();
+
+            //Sin este código Hibernate no carga la lista, dará error Lazy al querer acceder a la lista
+            Hibernate.initialize(userbikes);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return userbikes;
     }
 }
