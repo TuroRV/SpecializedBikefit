@@ -51,11 +51,25 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-
     @Override
-    public void deleteBicycle(Bicycle bicycle) {
-
+    public void deleteBicycleFromUser(User user, Bicycle bicycle) {
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            User userDB = session.merge(user);
+            Bicycle bicycleDB = session.merge(bicycle);
+            userDB.getBicycles().remove(bicycleDB);
+            bicycleDB.getUsers().remove(userDB);
+            transaction.commit();
+    } catch (Exception e) {
+        e.printStackTrace();
+        }finally {
+            session.close();
+        }
     }
+
 
     @Override
     public void updateProfile(User user) {

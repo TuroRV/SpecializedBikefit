@@ -14,6 +14,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.util.Optional;
 import java.util.Set;
 
 public class GarageController {
@@ -26,7 +27,7 @@ public class GarageController {
     @FXML
     public TableView garageTable;
     @FXML
-    public TableColumn<Bicycle,String> brandColumn;
+    public TableColumn<Bicycle, String> brandColumn;
     @FXML
     public TableColumn<Bicycle, String> modelColumn;
     @FXML
@@ -80,7 +81,7 @@ public class GarageController {
     @FXML
     public Slider topTubeSlider;
 
-    public void initialize(){
+    public void initialize() {
         setSliderConfig(reachSlider, reachValueLabel);
         setSliderConfig(stackSlider, stackValueLabel);
         setSliderConfig(seatTubeSlider, seatTubeValueLabel);
@@ -99,9 +100,6 @@ public class GarageController {
         loadUserBikes();
 
 
-
-
-
     }
 
     private void loadUserBikes() {
@@ -110,12 +108,12 @@ public class GarageController {
         garageTable.setItems(userBicycles);
     }
 
-    public void setSliderConfig(Slider slider, Label label){
-        label.setText((int)slider.getValue() + " mm");
+    public void setSliderConfig(Slider slider, Label label) {
+        label.setText((int) slider.getValue() + " mm");
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             label.setText((newValue.intValue() + " mm"));
         });
-        }
+    }
 
 
     public void addBicycle(ActionEvent actionEvent) {
@@ -130,13 +128,14 @@ public class GarageController {
             userDAO.addBicycleToUser(bicycle, UserSession.getUser());
             Alerts.showStandardAlert(Alert.AlertType.INFORMATION, "Éxito", "Añadida correctamente", "Bicicleta " + bicycle.getBike_brand() + " " + bicycle.getBike_model() + " añadida al garaje de " + UserSession.getUser().getUser_name());
             clearForm();
+            userBicycles.add(bicycle);
         } catch (Exception e) {
             e.printStackTrace();
-            Alerts.showStandardAlert(Alert.AlertType.ERROR,"Error","Fallo al añadir a bd","Ha ocurrido un error al guardar en la base de datos.");
+            Alerts.showStandardAlert(Alert.AlertType.ERROR, "Error", "Fallo al añadir a bd", "Ha ocurrido un error al guardar en la base de datos.");
         }
     }
 
-    public void clearForm(){
+    public void clearForm() {
         brandField.clear();
         modelField.clear();
         yearField.clear();
@@ -150,5 +149,29 @@ public class GarageController {
         stackSlider.adjustValue(600);
         seatTubeSlider.adjustValue(420);
         topTubeSlider.adjustValue(580);
+    }
+
+    public void deleteBicycle(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Eliminar bicicleta");
+        alert.setHeaderText(null);
+        alert.setContentText("¿Estás seguro de que quieres eliminar la bicicleta seleccionada?");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+
+            Bicycle selectedBicycle = (Bicycle) garageTable.getSelectionModel().getSelectedItem();
+            if (selectedBicycle != null) {
+                try {
+                    userDAO.deleteBicycleFromUser(UserSession.getUser(), selectedBicycle);
+                    userBicycles.remove(selectedBicycle);
+                    Alerts.showStandardAlert(Alert.AlertType.INFORMATION, "Éxito", "Eliminada correctamente", "Bicicleta " + selectedBicycle.getBike_brand() + " " + selectedBicycle.getBike_model() + " eliminada del garaje de " + UserSession.getUser().getUser_name());
+                } catch (Exception e) {
+                    Alerts.showStandardAlert(Alert.AlertType.ERROR, "Error", "Fallo al eliminar de bd", "Ha ocurrido un error al eliminar de la base de datos.");
+                }
+            }
+
+        }
     }
 }

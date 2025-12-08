@@ -10,7 +10,7 @@ public interface UserDAO {
 
     boolean validateCredentials(String email, String password);
     void addBicycleToUser(Bicycle bicycle,User user);
-    void deleteBicycle(Bicycle bicycle);
+    void deleteBicycleFromUser(User user, Bicycle bicycle);
     void updateProfile(User user);
     User getUserByEmail(String email);
     Set<Bicycle> getUserBicycles(User user);
