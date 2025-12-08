@@ -2,14 +2,20 @@ package com.dam.specializedbikefit.Controllers;
 
 import com.dam.specializedbikefit.Classes.Bicycle;
 import com.dam.specializedbikefit.Classes.Bikefit;
+import com.dam.specializedbikefit.DAOs.UserDAO;
+import com.dam.specializedbikefit.DAOs.UserDAOImpl;
+import com.dam.specializedbikefit.Singleton.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 public class BikefitController {
+
+    UserDAO userDAO = new UserDAOImpl();
 
     @FXML
     public TableView<Bikefit> historyTable;
@@ -48,6 +54,13 @@ public class BikefitController {
         colBike.setCellValueFactory(cellData ->
                 new javafx.beans.property.SimpleStringProperty(cellData.getValue().getBicycle().getBike_model())
         );
+
+        loadBicyclesCombobox();
+    }
+
+    public void loadBicyclesCombobox(){
+        Set<Bicycle> userbikes = userDAO.getUserBicycles(UserSession.getUser());
+        bikeSelector.getItems().addAll(userbikes);
     }
 
     public void deleteBikefit(ActionEvent actionEvent) {

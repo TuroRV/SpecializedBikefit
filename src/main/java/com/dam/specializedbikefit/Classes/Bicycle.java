@@ -127,16 +127,6 @@ public class Bicycle {
 
     @Override
     public String toString() {
-        return "Bicycle{" +
-                "bike_id=" + bike_id +
-                ", bike_brand='" + bike_brand + '\'' +
-                ", bike_model='" + bike_model + '\'' +
-                ", bike_size='" + bike_size + '\'' +
-                ", bike_year=" + bike_year +
-                ", bike_reach=" + bike_reach +
-                ", bike_stack=" + bike_stack +
-                ", bike_seattubelength=" + bike_seattubelength +
-                ", bike_toptubelength=" + bike_toptubelength +
-                '}';
+        return bike_brand + " " + bike_model + " " + bike_size + " " + bike_year;
     }
 }
