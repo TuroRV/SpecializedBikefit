@@ -22,7 +22,7 @@ public class Bikefit {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "bikefit_id")
+    @JoinColumn(name = "bike_id")
     private Bicycle bicycle;
 
     public Bikefit (){}

@@ -6,24 +6,19 @@
 <hibernate-configuration>
     <session-factory>
 
-        <!-- Datos de conexión -->
         <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/specializedbikefit</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password"></property>
 
-        <!-- Dialecto -->
         <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
 
-        <!-- Opciones útiles -->
         <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
 
-        <!-- Mapeo de entidades -->
         <mapping class="com.dam.specializedbikefit.Classes.User"/>
         <mapping class="com.dam.specializedbikefit.Classes.Bicycle"/>
-        <!-- añade aquí más clases si las necesitas -->
 
     </session-factory>
 </hibernate-configuration>

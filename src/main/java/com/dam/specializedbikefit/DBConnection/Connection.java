@@ -13,6 +13,7 @@ public class Connection {
 
         configuration.addAnnotatedClass(com.dam.specializedbikefit.Classes.User.class);
         configuration.addAnnotatedClass(com.dam.specializedbikefit.Classes.Bicycle.class);
+        configuration.addAnnotatedClass(com.dam.specializedbikefit.Classes.Bikefit.class);
 
         StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties());
         sessionFactory = configuration.buildSessionFactory(builder.build());

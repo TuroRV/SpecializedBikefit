@@ -2,8 +2,11 @@ package com.dam.specializedbikefit.Controllers;
 
 import com.dam.specializedbikefit.Classes.Bicycle;
 import com.dam.specializedbikefit.Classes.Bikefit;
+import com.dam.specializedbikefit.DAOs.BikefitDAO;
+import com.dam.specializedbikefit.DAOs.BikefitDAOImpl;
 import com.dam.specializedbikefit.DAOs.UserDAO;
 import com.dam.specializedbikefit.DAOs.UserDAOImpl;
+import com.dam.specializedbikefit.Navigation.Alerts;
 import com.dam.specializedbikefit.Singleton.UserSession;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +19,7 @@ import java.util.Set;
 public class BikefitController {
 
     UserDAO userDAO = new UserDAOImpl();
+    BikefitDAO bikefitDAO = new BikefitDAOImpl();
 
     @FXML
     public TableView<Bikefit> historyTable;
@@ -67,5 +71,12 @@ public class BikefitController {
     }
 
     public void generateBikefit(ActionEvent actionEvent) {
+        if (bikefitNameField.getText().isEmpty() || bikeSelector.getValue() == null){
+            Alerts.showStandardAlert(Alert.AlertType.ERROR,"Error","Error en los campos","Rellene todos los campos del formulario");
+            return;
+        }
+        else {
+            bikefitDAO.createNewBikefit(bikefitNameField.getText(), UserSession.getUser(), bikeSelector.getValue());
+        }
     }
 }
