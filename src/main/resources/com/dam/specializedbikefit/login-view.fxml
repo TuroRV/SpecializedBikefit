@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.text.Text?>
 <StackPane stylesheets="@../../../styles/styles.css"
            styleClass="main-content"
            xmlns="http://javafx.com/javafx/17.0.12"
@@ -37,6 +38,15 @@
         <Button fx:id="loginButton"
                 onAction="#login"
                 text="INICIAR SESIÓN"
+                styleClass="btn, btn-primary"
+                maxWidth="Infinity"
+                prefHeight="40"/>
+
+        <Text>¿No tientes cuenta?</Text>
+
+        <Button fx:id="registerButton"
+                onAction="#goToCreateProfile"
+                text="CREAR CUENTA"
                 styleClass="btn, btn-primary"
                 maxWidth="Infinity"
                 prefHeight="40"/>

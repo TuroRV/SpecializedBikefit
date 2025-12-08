@@ -19,7 +19,7 @@ public class UserDAOImpl implements UserDAO {
         String hql = "FROM " + User.class.getName() + " u " +
                 "WHERE u.user_email = :email AND u.user_password = :password";
 
-        Query<User> query = session.createQuery(hql,User.class);
+        Query<User> query = session.createQuery(hql, User.class);
         query.setParameter("email", email);
         query.setParameter("password", password);
 
@@ -63,9 +63,9 @@ public class UserDAOImpl implements UserDAO {
             userDB.getBicycles().remove(bicycleDB);
             bicycleDB.getUsers().remove(userDB);
             transaction.commit();
-    } catch (Exception e) {
-        e.printStackTrace();
-        }finally {
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
             session.close();
         }
     }
@@ -86,8 +86,7 @@ public class UserDAOImpl implements UserDAO {
                 transaction.rollback();
             }
             e.printStackTrace();
-        }
-        finally {
+        } finally {
             session.close();
         }
     }
@@ -100,7 +99,7 @@ public class UserDAOImpl implements UserDAO {
         String hql = "FROM " + User.class.getName() + " u " +
                 "WHERE u.user_email = :email";
 
-        Query<User> query = session.createQuery(hql,User.class);
+        Query<User> query = session.createQuery(hql, User.class);
         query.setParameter("email", email);
 
         User user = query.uniqueResult();
@@ -132,5 +131,37 @@ public class UserDAOImpl implements UserDAO {
             session.close();
         }
         return userbikes;
+    }
+
+    @Override
+    public boolean createUser(User user) {
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+
+            String hql = "FROM User WHERE user_email = :email";
+            Query<User> query = session.createQuery(hql, User.class);
+            query.setParameter("email", user.getUser_email());
+
+            if (query.uniqueResult() != null) {
+                System.out.println("Ya existe el usuario");
+                return false;
+            }
+
+            session.persist(user);
+            transaction.commit();
+            return true;
+
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        } finally {
+            session.close();
+        }
     }
 }

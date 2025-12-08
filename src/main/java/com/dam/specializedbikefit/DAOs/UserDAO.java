@@ -14,6 +14,7 @@ public interface UserDAO {
     void updateProfile(User user);
     User getUserByEmail(String email);
     Set<Bicycle> getUserBicycles(User user);
+    boolean createUser(User user);
 
 
 }

@@ -28,6 +28,7 @@
                 <HBox alignment="CENTER_RIGHT" spacing="10">
 
                     <Button mnemonicParsing="false"
+                            fx:id="closeSessionButton"
                             onAction="#closeSession"
                             styleClass="btn, btn-primary"
                             text="Cerrar Sesión" />

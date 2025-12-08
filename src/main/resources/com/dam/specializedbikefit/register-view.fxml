@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" prefHeight="600.0" prefWidth="500.0" stylesheets="@../../../styles/styles.css" fx:controller="com.dam.specializedbikefit.Controllers.RegisterController">
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-content" style="-fx-background-color: transparent;">
+
+            <VBox alignment="CENTER" styleClass="main-content">
+
+                <VBox maxWidth="400" spacing="15" styleClass="card">
+
+                    <Label styleClass="card-title" text="Crear Perfil" />
+
+                    <VBox spacing="5">
+                        <Label styleClass="form-label" text="Nombre:" />
+                        <TextField fx:id="nameTextField" promptText="Tu nombre" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label styleClass="form-label" text="Apellidos:" />
+                        <TextField fx:id="surnameTextField" promptText="Tus apellidos" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label styleClass="form-label" text="Email: " />
+                        <TextField fx:id="emailTextField" promptText="Tu email" />
+                        <Label styleClass="form-label" text="Contraseña: " />
+                        <TextField fx:id="passwordTextField" promptText="Tu contraseña" />
+                        <Label styleClass="form-label" text="Confirmar contraseña: " />
+                        <TextField fx:id="confirmPasswordTextField" promptText="Confirma tu contraseña" />
+
+                    </VBox>
+
+                    <Label styleClass="section-separator" text="Mis Medidas (cm)" />
+
+                    <VBox spacing="5">
+                        <Label styleClass="form-label" text="Altura:" />
+                        <TextField fx:id="heightField" promptText="Ej: 180.5" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label styleClass="form-label" text="Torso:" />
+                        <TextField fx:id="torsoLengthField" promptText="Ej: 60.0" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label styleClass="form-label" text="Brazo:" />
+                        <TextField fx:id="armLengthField" promptText="Ej: 70.0" />
+                    </VBox>
+
+                    <VBox spacing="5">
+                        <Label styleClass="form-label" text="Entrepierna:" />
+                        <TextField fx:id="inseamLengthField" promptText="Ej: 85.0" />
+                    </VBox>
+
+                    <HBox alignment="CENTER" spacing="15">
+                        <VBox.margin>
+                            <Insets top="10.0" />
+                        </VBox.margin>
+                        <Button fx:id="returnLogin" onAction="#returnLogin" styleClass="btn, btn-secondary" text="Volver" />
+                        <Button fx:id="createProfile" onAction="#createProfile" styleClass="btn, btn-primary" text="Crear Perfil" />
+                    </HBox>
+
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </center>
+</BorderPane>

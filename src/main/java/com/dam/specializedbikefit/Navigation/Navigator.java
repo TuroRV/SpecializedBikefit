@@ -19,6 +19,8 @@ public class Navigator {
             FXMLLoader loader = new FXMLLoader(resource);
             Parent root = loader.load();
             Scene scene = new Scene(root);
+            stage.setMinWidth(720);
+            stage.setMinHeight(480);
             stage.setScene(scene);
             if (title != null) stage.setTitle(title);
             stage.centerOnScreen();

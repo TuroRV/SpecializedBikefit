@@ -7,6 +7,7 @@ import com.dam.specializedbikefit.DBConnection.Connection;
 import com.dam.specializedbikefit.Navigation.Alerts;
 import com.dam.specializedbikefit.Navigation.Navigator;
 import com.dam.specializedbikefit.Singleton.UserSession;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import org.hibernate.Session;
@@ -42,5 +43,9 @@ public class LoginController {
         else  {
             Alerts.showStandardAlert(Alert.AlertType.ERROR,"Error de Login","Credenciales no válidas","El email o la contraseña no son correctos");
         }
+    }
+
+    public void goToCreateProfile(ActionEvent actionEvent) {
+        Navigator.changeStage(loginButton,"register-view.fxml","Crear Cuenta");
     }
 }

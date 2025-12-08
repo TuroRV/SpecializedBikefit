@@ -21,6 +21,7 @@ public class HomeController {
     public BorderPane contentPane;
     public Button profileButton;
     public Label appTitle;
+    public Button closeSessionButton;
 
     public void initialize() {
 
@@ -46,7 +47,7 @@ public class HomeController {
         Optional<ButtonType> result = alert.showAndWait();
         if (result.isPresent() && result.get() == ButtonType.OK) {
             UserSession.setUser(null);
-            Navigator.changeStage(profileButton, "login-view.fxml", "Login");
+            Navigator.changeStage(closeSessionButton, "login-view.fxml", "Login");
         }
     }
 
