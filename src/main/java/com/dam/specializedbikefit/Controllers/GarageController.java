@@ -6,6 +6,8 @@ import com.dam.specializedbikefit.DAOs.BicycleDAOImpl;
 import com.dam.specializedbikefit.DAOs.UserDAO;
 import com.dam.specializedbikefit.DAOs.UserDAOImpl;
 import com.dam.specializedbikefit.Navigation.Alerts;
+import com.dam.specializedbikefit.Navigation.AppView;
+import com.dam.specializedbikefit.Navigation.ViewSwitcher;
 import com.dam.specializedbikefit.Singleton.UserSession;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -173,5 +175,9 @@ public class GarageController {
             }
 
         }
+    }
+
+    public void goToMenu(ActionEvent actionEvent) {
+        ViewSwitcher.showView(AppView.MENU);
     }
 }

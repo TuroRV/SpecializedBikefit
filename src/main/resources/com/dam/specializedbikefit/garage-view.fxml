@@ -46,7 +46,11 @@
                         <TableColumn fx:id="bikeIsEbikeColumn" text="E-Bike" />
                     </columns>
                 </TableView>
-                <HBox alignment="CENTER_RIGHT">
+                <HBox alignment="CENTER_RIGHT" spacing="20">
+                    <Button text="Volver"
+                            styleClass="btn, btn-secondary"
+                            onAction="#goToMenu"/>
+
                     <Button text="Eliminar Seleccionada"
                             styleClass="btn, btn-secondary"
                             onAction="#deleteBicycle"/>
