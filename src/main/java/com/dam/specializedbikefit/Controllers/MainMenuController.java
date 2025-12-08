@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 public class MainMenuController {
 
     public void goToSettings(ActionEvent actionEvent) {
+        ViewSwitcher.showView(AppView.USERPROFILE);
     }
 
     public void goToBikefits(ActionEvent actionEvent) {

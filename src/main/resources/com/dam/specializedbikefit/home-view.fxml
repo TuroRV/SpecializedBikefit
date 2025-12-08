@@ -27,11 +27,6 @@
 
                 <HBox alignment="CENTER_RIGHT" spacing="10">
 
-                    <Button fx:id="profileButton" mnemonicParsing="false"
-                            onAction="#goToProfile"
-                            styleClass="btn, btn-light"
-                            text="Mi Perfil" />
-
                     <Button mnemonicParsing="false"
                             onAction="#closeSession"
                             styleClass="btn, btn-primary"

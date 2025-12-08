@@ -47,7 +47,10 @@
                     </columns>
                 </TableView>
 
-                <HBox alignment="CENTER_RIGHT">
+                <HBox alignment="CENTER_RIGHT" spacing="20">
+                    <Button text="Volver"
+                            styleClass="btn, btn-secondary"
+                            onAction="#goToMenu"/>
                     <Button text="Eliminar Análisis" styleClass="btn, btn-secondary" onAction="#deleteBikefit"/>
                 </HBox>
             </VBox>

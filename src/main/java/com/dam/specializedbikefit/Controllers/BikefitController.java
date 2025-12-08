@@ -7,6 +7,7 @@ import com.dam.specializedbikefit.DAOs.BikefitDAOImpl;
 import com.dam.specializedbikefit.DAOs.UserDAO;
 import com.dam.specializedbikefit.DAOs.UserDAOImpl;
 import com.dam.specializedbikefit.Navigation.Alerts;
+import com.dam.specializedbikefit.Navigation.ViewSwitcher;
 import com.dam.specializedbikefit.Singleton.UserSession;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -122,5 +123,9 @@ public class BikefitController {
             }
 
         }
+    }
+
+    public void goToMenu(ActionEvent actionEvent) {
+        ViewSwitcher.showView(com.dam.specializedbikefit.Navigation.AppView.MENU);
     }
 }
