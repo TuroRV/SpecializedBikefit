@@ -39,6 +39,10 @@
                         <TableColumn fx:id="modelColumn" text="Modelo" />
                         <TableColumn fx:id="sizeColumn" text="Talla" />
                         <TableColumn fx:id="yearColumn" text="Año" />
+                        <TableColumn fx:id="reachColumn" text="Reach" />
+                        <TableColumn fx:id="stackColumn" text="Stack" />
+                        <TableColumn fx:id="seatTubeColumn" text="Seat Tube" />
+                        <TableColumn fx:id="topTubeColumn" text="Top Tube" />
                         <TableColumn fx:id="bikeIsEbikeColumn" text="E-Bike" />
                     </columns>
                 </TableView>

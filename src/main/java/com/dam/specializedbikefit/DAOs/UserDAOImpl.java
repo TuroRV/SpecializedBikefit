@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import java.util.List;
+
 public class UserDAOImpl implements UserDAO {
     @Override
     public boolean validateCredentials(String email, String password) {
@@ -93,5 +95,10 @@ public class UserDAOImpl implements UserDAO {
             return user;
         }
         return null;
+    }
+
+    @Override
+    public List<Bicycle> getUserBikes(User user) {
+        return List.of();
     }
 }
