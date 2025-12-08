@@ -4,7 +4,8 @@ public enum AppView {
     LOGIN("/com/dam/specializedbikefit/login-view.fxml"),
     MENU("/com/dam/specializedbikefit/mainMenu-view.fxml"),
     USERPROFILE("/com/dam/specializedbikefit/profile-view.fxml"),
-    GARAGE("/com/dam/specializedbikefit/garage-view.fxml");
+    GARAGE("/com/dam/specializedbikefit/garage-view.fxml"),
+    BIKEFIT("/com/dam/specializedbikefit/bikefit-view.fxml");
 
     private final String fxmlFile;
 

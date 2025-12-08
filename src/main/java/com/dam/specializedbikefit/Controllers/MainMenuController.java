@@ -10,6 +10,7 @@ public class MainMenuController {
     }
 
     public void goToBikefits(ActionEvent actionEvent) {
+        ViewSwitcher.showView(AppView.BIKEFIT);
     }
 
     public void goToGarage(ActionEvent actionEvent) {
