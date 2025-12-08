@@ -57,4 +57,21 @@ public class BicycleDAOImpl implements BicycleDAO {
         }
         return resultBicycle;
     }
+
+    @Override
+    public void updateBicycle(Bicycle bicycle) {
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Transaction transaction = null;
+        try {
+            transaction = session.beginTransaction();
+            session.merge(bicycle); // Actualiza la fila en la BBDD
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+    }
 }

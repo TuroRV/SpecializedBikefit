@@ -21,13 +21,15 @@ import java.util.Set;
 
 public class GarageController {
 
+
     BicycleDAO bicycleDAO = new BicycleDAOImpl();
     UserDAO userDAO = new UserDAOImpl();
 
     private ObservableList<Bicycle> userBicycles;
+    private Bicycle selectedBike = null;
 
     @FXML
-    public TableView garageTable;
+    public TableView<Bicycle> garageTable;
     @FXML
     public TableColumn<Bicycle, String> brandColumn;
     @FXML
@@ -82,6 +84,9 @@ public class GarageController {
     public Label topTubeValueLabel;
     @FXML
     public Slider topTubeSlider;
+    @FXML
+    public Button actionBtn;
+
 
     public void initialize() {
         setSliderConfig(reachSlider, reachValueLabel);
@@ -101,7 +106,36 @@ public class GarageController {
 
         loadUserBikes();
 
+        garageTable.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+            if (newSelection != null) {
 
+                selectedBike = newSelection;
+                fillForm(newSelection);
+                actionBtn.setText("Modificar Bicicleta"); // Feedback visual
+            }
+        });
+
+
+    }
+
+    private void fillForm(Bicycle bike) {
+        brandField.setText(bike.getBike_brand());
+        modelField.setText(bike.getBike_model());
+        yearField.setText(String.valueOf(bike.getBike_year()));
+        reachSlider.setValue(bike.getBike_reach());
+        stackSlider.setValue(bike.getBike_stack());
+        seatTubeSlider.setValue(bike.getBike_seattubelength());
+        topTubeSlider.setValue(bike.getBike_toptubelength());
+        isEbikeCheck.setSelected(bike.isBike_isEbike());
+
+        String size = bike.getBike_size();
+        for (Toggle t : sizeGroup.getToggles()) {
+            RadioButton rb = (RadioButton) t;
+            if (rb.getText().equals(size)) {
+                sizeGroup.selectToggle(rb);
+                break;
+            }
+        }
     }
 
     private void loadUserBikes() {
@@ -115,42 +149,6 @@ public class GarageController {
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             label.setText((newValue.intValue() + " mm"));
         });
-    }
-
-
-    public void addBicycle(ActionEvent actionEvent) {
-
-        RadioButton selectedRadio = (RadioButton) sizeGroup.getSelectedToggle();
-        String size = selectedRadio.getText();
-
-        Bicycle formBicycle = new Bicycle(brandField.getText(), modelField.getText(), size, Integer.parseInt(yearField.getText()), (float) reachSlider.getValue(), (float) stackSlider.getValue(), (float) seatTubeSlider.getValue(), (float) topTubeSlider.getValue(), isEbikeCheck.isSelected());
-
-        try {
-            Bicycle bicycle = bicycleDAO.addBicycle(formBicycle);
-            userDAO.addBicycleToUser(bicycle, UserSession.getUser());
-            Alerts.showStandardAlert(Alert.AlertType.INFORMATION, "Éxito", "Añadida correctamente", "Bicicleta " + bicycle.getBike_brand() + " " + bicycle.getBike_model() + " añadida al garaje de " + UserSession.getUser().getUser_name());
-            clearForm();
-            userBicycles.add(bicycle);
-        } catch (Exception e) {
-            e.printStackTrace();
-            Alerts.showStandardAlert(Alert.AlertType.ERROR, "Error", "Fallo al añadir a bd", "Ha ocurrido un error al guardar en la base de datos.");
-        }
-    }
-
-    public void clearForm() {
-        brandField.clear();
-        modelField.clear();
-        yearField.clear();
-        radioS1.setSelected(false);
-        radioS2.setSelected(false);
-        radioS3.setSelected(false);
-        radioS4.setSelected(false);
-        radioS5.setSelected(false);
-        isEbikeCheck.setSelected(false);
-        reachSlider.adjustValue(450);
-        stackSlider.adjustValue(600);
-        seatTubeSlider.adjustValue(420);
-        topTubeSlider.adjustValue(580);
     }
 
     public void deleteBicycle(ActionEvent actionEvent) {
@@ -179,5 +177,73 @@ public class GarageController {
 
     public void goToMenu(ActionEvent actionEvent) {
         ViewSwitcher.showView(AppView.MENU);
+    }
+
+    public void saveOrUpdateBicycle(ActionEvent actionEvent) {
+
+        if (brandField.getText().isEmpty() || modelField.getText().isEmpty() || sizeGroup.getSelectedToggle() == null) {
+            Alerts.showStandardAlert(Alert.AlertType.ERROR, "Error", "Campos vacíos", "Rellena todos los datos.");
+            return;
+        }
+
+        try {
+
+            String size = ((RadioButton) sizeGroup.getSelectedToggle()).getText();
+
+            if (selectedBike == null) {
+                // === MODO CREAR (ADD) ===
+                Bicycle newBike = new Bicycle(
+                        brandField.getText(), modelField.getText(), size,
+                        Integer.parseInt(yearField.getText()),
+                        (float) reachSlider.getValue(), (float) stackSlider.getValue(),
+                        (float) seatTubeSlider.getValue(), (float) topTubeSlider.getValue(),
+                        isEbikeCheck.isSelected()
+                );
+
+                Bicycle savedBike = bicycleDAO.addBicycle(newBike);
+                userDAO.addBicycleToUser(savedBike, UserSession.getUser());
+
+                userBicycles.add(savedBike); // Actualizar tabla
+                Alerts.showStandardAlert(Alert.AlertType.INFORMATION, "Éxito", "Añadida", "Bici creada.");
+
+            } else {
+
+                selectedBike.setBike_brand(brandField.getText());
+                selectedBike.setBike_model(modelField.getText());
+                selectedBike.setBike_size(size);
+                selectedBike.setBike_year(Integer.parseInt(yearField.getText()));
+                selectedBike.setBike_reach((float) reachSlider.getValue());
+                selectedBike.setBike_stack((float) stackSlider.getValue());
+                selectedBike.setBike_seattubelength((float) seatTubeSlider.getValue());
+                selectedBike.setBike_toptubelength((float) topTubeSlider.getValue());
+                selectedBike.setBike_isEbike(isEbikeCheck.isSelected());
+
+                bicycleDAO.updateBicycle(selectedBike);
+
+                garageTable.refresh();
+
+                Alerts.showStandardAlert(Alert.AlertType.INFORMATION, "Éxito", "Modificada", "Datos actualizados.");
+            }
+
+            clearForm();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            Alerts.showStandardAlert(Alert.AlertType.ERROR, "Error", "Fallo", "Error al guardar.");
+        }
+    }
+
+    public void clearForm() {
+
+        brandField.clear();
+        modelField.clear();
+        yearField.clear();
+        sizeGroup.selectToggle(null);
+        isEbikeCheck.setSelected(false);
+        selectedBike = null;
+        garageTable.getSelectionModel().clearSelection();
+        actionBtn.setText("Añadir al Garaje");
+
+        selectedBike = null;
     }
 }

@@ -133,7 +133,18 @@
                     </content>
                 </ScrollPane>
 
-                <Button text="Añadir al Garaje" maxWidth="Infinity" styleClass="btn, btn-primary" onAction="#addBicycle"/>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button text="Borrar campos"
+                            styleClass="btn, btn-secondary"
+                            maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                            onAction="#clearForm"/>
+
+                    <Button fx:id="actionBtn"
+                            text="Añadir al Garaje"
+                            maxWidth="Infinity" HBox.hgrow="ALWAYS"
+                            styleClass="btn, btn-primary"
+                            onAction="#saveOrUpdateBicycle"/>
+                </HBox>
 
             </VBox>
         </HBox>

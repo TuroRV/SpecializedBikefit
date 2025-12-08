@@ -28,9 +28,9 @@
                         <Label styleClass="form-label" text="Email: " />
                         <TextField fx:id="emailTextField" promptText="Tu email" />
                         <Label styleClass="form-label" text="Contraseña: " />
-                        <TextField fx:id="passwordTextField" promptText="Tu contraseña" />
+                        <PasswordField fx:id="passwordTextField" promptText="Tu contraseña" />
                         <Label styleClass="form-label" text="Confirmar contraseña: " />
-                        <TextField fx:id="confirmPasswordTextField" promptText="Confirma tu contraseña" />
+                        <PasswordField fx:id="confirmPasswordTextField" promptText="Confirma tu contraseña" />
 
                     </VBox>
 
@@ -52,7 +52,7 @@
                     </VBox>
 
                     <VBox spacing="5">
-                        <Label styleClass="form-label" text="Entrepierna:" />
+                        <Label styleClass="form-label" text="Largo pierna:" />
                         <TextField fx:id="inseamLengthField" promptText="Ej: 85.0" />
                     </VBox>
 

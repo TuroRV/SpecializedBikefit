@@ -7,10 +7,7 @@ import com.dam.specializedbikefit.Navigation.Alerts;
 import com.dam.specializedbikefit.Navigation.Navigator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 import java.util.Optional;
 
@@ -25,9 +22,9 @@ public class RegisterController {
     @FXML
     public TextField emailTextField;
     @FXML
-    public TextField passwordTextField;
+    public PasswordField passwordTextField;
     @FXML
-    public TextField confirmPasswordTextField;
+    public PasswordField confirmPasswordTextField;
     @FXML
     public TextField heightField;
     @FXML
