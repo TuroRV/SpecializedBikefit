@@ -46,11 +46,45 @@ public class BikefitDAOImpl implements  BikefitDAO {
 
     @Override
     public List<Bikefit> getBikeFitsByUser(User user) {
-        return List.of();
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Transaction transaction = null;
+        List<Bikefit> bikefitsList = null;
+        try{
+            transaction = session.beginTransaction();
+            String hql = "FROM Bikefit b WHERE b.user.user_id = :userId";
+
+            org.hibernate.query.Query<Bikefit> query = session.createQuery(hql, Bikefit.class);
+            query.setParameter("userId", user.getUser_id());
+
+            bikefitsList = query.list();
+
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return bikefitsList;
     }
 
     @Override
     public void deleteBikefit(Bikefit bikefit) {
+        Connection.initializeConnection();
+        Session session = Connection.getSessionFactory().openSession();
+        Transaction transaction = null;
+
+        try{
+            transaction = session.beginTransaction();
+            Bikefit bikefitToDelete = session.merge(bikefit);
+            session.remove(bikefitToDelete);
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
 
     }
 }

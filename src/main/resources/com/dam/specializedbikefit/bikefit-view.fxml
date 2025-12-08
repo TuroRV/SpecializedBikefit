@@ -26,9 +26,9 @@
             </padding>
 
             <VBox HBox.hgrow="ALWAYS" spacing="10">
-                <Label text="Mis Análisis Biomecánicos" styleClass="section-title"/>
+                <Label text="Mis Bikefits" styleClass="section-title"/>
 
-                <TableView fx:id="historyTable" VBox.vgrow="ALWAYS">
+                <TableView fx:id="bikefitsTable" VBox.vgrow="ALWAYS">
                     <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
                     </columnResizePolicy>

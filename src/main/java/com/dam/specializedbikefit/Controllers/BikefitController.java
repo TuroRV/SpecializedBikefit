@@ -8,12 +8,15 @@ import com.dam.specializedbikefit.DAOs.UserDAO;
 import com.dam.specializedbikefit.DAOs.UserDAOImpl;
 import com.dam.specializedbikefit.Navigation.Alerts;
 import com.dam.specializedbikefit.Singleton.UserSession;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public class BikefitController {
@@ -21,8 +24,10 @@ public class BikefitController {
     UserDAO userDAO = new UserDAOImpl();
     BikefitDAO bikefitDAO = new BikefitDAOImpl();
 
+    ObservableList<Bikefit> bikefitsList;
+
     @FXML
-    public TableView<Bikefit> historyTable;
+    public TableView<Bikefit> bikefitsTable;
     @FXML
     public TableColumn<Bikefit, String> colBikefitName;
     @FXML
@@ -60,6 +65,14 @@ public class BikefitController {
         );
 
         loadBicyclesCombobox();
+        loadBikefitsTable();
+        bikefitsTable.setItems(bikefitsList);
+
+    }
+
+    private void loadBikefitsTable() {
+        List<Bikefit> bikefits = bikefitDAO.getBikeFitsByUser(UserSession.getUser());
+        bikefitsList = javafx.collections.FXCollections.observableArrayList(bikefits);
     }
 
     public void loadBicyclesCombobox(){
@@ -68,6 +81,25 @@ public class BikefitController {
     }
 
     public void deleteBikefit(ActionEvent actionEvent) {
+        Bikefit selectedBikefit = bikefitsTable.getSelectionModel().getSelectedItem();
+        if (selectedBikefit != null) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Eliminar Bikefit");
+            alert.setHeaderText(null);
+            alert.setContentText("¿Estás seguro de que quieres eliminar el bikefit seleccionado?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+
+                bikefitDAO.deleteBikefit(selectedBikefit);
+                bikefitsList.remove(selectedBikefit);
+                Alerts.showStandardAlert(Alert.AlertType.INFORMATION, "Éxito", "Bikefit Borrado", "Bikefit borrado correctamente");
+            }
+        }
+        else {
+            Alerts.showStandardAlert(Alert.AlertType.ERROR, "Error", "Ningún dato a borrar", "Selecciona algún bikefit");
+        }
     }
 
     public void generateBikefit(ActionEvent actionEvent) {
@@ -76,7 +108,19 @@ public class BikefitController {
             return;
         }
         else {
-            bikefitDAO.createNewBikefit(bikefitNameField.getText(), UserSession.getUser(), bikeSelector.getValue());
+           Bikefit newFit = bikefitDAO.createNewBikefit(bikefitNameField.getText(), UserSession.getUser(), bikeSelector.getValue());
+
+            if (newFit != null) {
+
+                bikefitsList.add(newFit);
+
+                resSaddleHeight.setText(String.format("%.1f cm", newFit.getBikefit_saddleHeight()));
+                resReach.setText(String.format("%.1f cm", newFit.getBikefit_saddleToBar()));
+                resSetback.setText(String.format("%.1f cm", newFit.getBikefit_saddleSetBack()));
+
+                Alerts.showStandardAlert(Alert.AlertType.INFORMATION, "Éxito", "Bikefit Guardado", "Tu nuevo bikefit ha sido guardado correctamente.");
+            }
+
         }
     }
 }
