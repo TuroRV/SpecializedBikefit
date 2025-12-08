@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17.0.12"
+            xmlns:fx="http://javafx.com/fxml/1"
+            stylesheets="@../../../styles/styles.css"
+            fx:controller="com.dam.specializedbikefit.Controllers.InfoController">
+
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="main-content" style="-fx-background-color: transparent;">
+            <content>
+                <VBox alignment="CENTER" styleClass="main-content">
+                    <padding>
+                        <Insets top="30" bottom="30"/>
+                    </padding>
+
+                    <VBox maxWidth="600" spacing="20" styleClass="card">
+
+                        <VBox spacing="5" alignment="CENTER">
+                            <Label text="Bienvenido a Specialized Bikefit" styleClass="card-title" style="-fx-font-size: 24px;"/>
+                            <Label text="Con esta aplicación podrás guardar tus bicicletas y obtener métricas de ajuste en función a tus medidas específicas" styleClass="card-subtitle" wrapText="true"/>
+                        </VBox>
+
+                        <Label styleClass="section-separator" text="Funcionalidades Principales"/>
+
+                        <VBox spacing="5">
+                            <Label text="🚲 Mi Garaje" styleClass="form-label" style="-fx-font-size: 16px;"/>
+                            <Label wrapText="true" style="-fx-text-fill: #555;"
+                                   text="Añade o modifica tus bicicletas. Utiliza las medidas de la tabla de geometrías de tu fabricante para obtener mediciones precisas."/>
+                        </VBox>
+
+                        <VBox spacing="5">
+                            <Label text="📐 Análisis Biomecánico (Bikefit)" styleClass="form-label" style="-fx-font-size: 16px;"/>
+                            <Label wrapText="true" style="-fx-text-fill: #555;"
+                                   text="Selecciona tu bicicleta y crea un nuevo bikefit personalizado. Obtendrás las medidas recomendadas para el ajuste de la altura de sillín, el reach (alcance desde el sillín hasta el manillar) y el saddle setback o retroceso (ajuste de avance del sillín)."/>
+                        </VBox>
+
+                        <VBox spacing="5">
+                            <Label text="👤 Mi Perfil" styleClass="form-label" style="-fx-font-size: 16px;"/>
+                            <Label wrapText="true" style="-fx-text-fill: #555;"
+                                   text="Edita tu perfil. Asegúrate de que tus medidas corporales son lo más exactas posibles para poder obtener los mejores resultados."/>
+                        </VBox>
+
+                        <VBox spacing="15" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+                            <Label text="Specialized Bikefit da medidas de ajuste orientativas. No sustituye un estudio biomecánico completo" style="-fx-text-fill: #999; -fx-font-size: 12px;"/>
+
+                            <Button text="Volver"
+                                    styleClass="btn, btn-primary"
+                                    maxWidth="200"
+                                    onAction="#goBack"/>
+                        </VBox>
+
+                    </VBox>
+                </VBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

@@ -54,4 +54,8 @@ public class HomeController {
     public void goToMenu(MouseEvent mouseEvent) {
         ViewSwitcher.showView(AppView.MENU);
     }
+
+    public void goToInfo(ActionEvent actionEvent) {
+        ViewSwitcher.showView(AppView.INFO);
+    }
 }

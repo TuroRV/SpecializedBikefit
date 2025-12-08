@@ -138,3 +138,11 @@
     -fx-text-fill: #000000;
 }
 
+.btn-info {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+}
+.btn-info:hover {
+    -fx-background-color: #1976D2;
+}
+
